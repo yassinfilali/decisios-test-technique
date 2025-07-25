@@ -1,0 +1,42 @@
+# Build results
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# VS Code
+.vscode/
+
+# macOS system files
+.DS_Store
+
+# ASP.NET artifacts (if added later)
+*.db
+*.db-shm
+*.db-wal
+*.log
+
+# dotnet artifacts
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# NuGet
+*.nupkg
+packages/
+*.snupkg
+
+# Rider/JetBrains
+.idea/
+*.sln.iml
+
+# Logs
+*.log
+
+# Global JSON
+global.json
+
