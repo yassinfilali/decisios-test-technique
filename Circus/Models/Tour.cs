@@ -10,7 +10,7 @@ namespace Circus.Model
     }
 
     /// <summary>
-    /// Représente un tour exécuté pendant une représentation.
+    /// Représente un tour exécuté pendant une représentation
     /// </summary>|
     public class Tour
     {
@@ -20,7 +20,7 @@ namespace Circus.Model
         public string Nom { get; set; }
 
         /// <summary>
-        /// type du tour (accrobatique ou musique)
+        /// Type du tour (accrobatique ou musique)
         /// </summary>
         public TypeTour Type { get; set; }
 
