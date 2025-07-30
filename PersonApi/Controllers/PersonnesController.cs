@@ -10,7 +10,7 @@ namespace PersonApi.Controllers
     /// </summary>
     [ApiController]
     [Route("api/[controller]")]
-    public class PersonnesController : ControllerBase
+    public class PersonnesController : ControllerBase 
     {
         private PersonneService _service;
 
