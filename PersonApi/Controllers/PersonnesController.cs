@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using PersonApi.DTOs;
 using PersonApi.Models;
 using PersonApi.Services;
 
@@ -11,7 +12,7 @@ namespace PersonApi.Controllers
     [Route("api/[controller]")]
     public class PersonnesController : ControllerBase
     {
-        private  PersonneService _service;
+        private PersonneService _service;
 
         /// <summary>
         /// Constructeur 
@@ -29,7 +30,16 @@ namespace PersonApi.Controllers
         public IActionResult GetAll([FromQuery] string? nom, [FromQuery] string? prenom)
         {
             var personnes = _service.GetAll(nom, prenom);
-            return Ok(personnes);
+
+            var list = personnes.Select(p => new PersonneDTO
+            {
+                Id = p.Id,
+                Nom = p.Nom,
+                Prenom = p.Prenom
+            }).ToList();
+
+
+            return Ok(list);
         }
 
         /// <summary>
@@ -43,30 +53,60 @@ namespace PersonApi.Controllers
             {
                 return NotFound();
             }
-            return Ok(personne);
+
+            var peId = new PersonneDTO
+            {
+                Id = personne.Id,
+                Nom = personne.Nom,
+                Prenom = personne.Prenom
+            };
+
+
+            return Ok(peId);
         }
 
         /// <summary>
         /// Cette méthode crée une nouvelle personne 
         /// </summary>
         [HttpPost]
-        public IActionResult Create([FromBody] Personne personne)
+        public IActionResult Create([FromBody] PersonneCreateUpdateDTO dto)
         {
+            var personne = new Personne
+            {
+                Nom = dto.Nom,
+                Prenom = dto.Prenom
+            };
+
             var created = _service.Create(personne);
-            return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
+
+            var peDto = new PersonneDTO
+            {
+                Id = personne.Id,
+                Nom = personne.Nom,
+                Prenom = personne.Prenom
+            };
+
+            return CreatedAtAction(nameof(GetById), new { id = created.Id }, peDto);
         }
 
         /// <summary>
         /// Cette méthode met à jour une personne
         /// </summary>
         [HttpPut("{id}")]
-        public IActionResult Update(Guid id, [FromBody] Personne updated)
+        public IActionResult Update(Guid id, [FromBody] PersonneCreateUpdateDTO dto)
         {
             var existing = _service.GetById(id);
             if (existing == null)
             {
                 return NotFound();
             }
+
+            var updated = new Personne
+            {
+                Id = id,
+                Nom = dto.Nom,
+                Prenom = dto.Prenom
+            };
 
             _service.Update(id, updated);
             return NoContent();
