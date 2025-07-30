@@ -4,20 +4,19 @@ Ce dépôt contient les éléments demandés dans le cadre du test technique pou
 
 ## Contenu du dépôt
 
-### 1. Programme console (C#)
+### 1. Programme console (Circus) 
 - Simulation d’interactions entre un **spectateur**, des **dresseurs** et leurs **singes**
 - Utilisation du design pattern **Observer**
 - Projet orienté console, écrit en C#.
 
-### 2. API REST – ASP.NET Core
+### 2. API REST – ASP.NET Core (PersonApi)
 - API de gestion des **personnes** avec les opérations CRUD.
 - Utilisation de **Entity Framework Core** et base de données **SQLite**.
-- Architecture en couches : `Models`, `Services`, `Controllers`, `DTOs`
+- Architecture : `Models`, `Services`, `Controllers`, `DTOs`
 
-### 3. Tests unitaires – API
+### 3. Tests unitaires – API (PersonApi.Tests)
 - Projet `PersonApi.Tests` développé avec **xUnit**
-- Couverture complète : `GetAll`, `GetById`, `Create`, `Update`, `Delete`
-- Tests exécutés sur une base **in-memory** (pas de persistance réelle)
+- Tests sur tous les cas **CRUD**
 
 ---
 
